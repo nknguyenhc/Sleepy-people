@@ -17,7 +17,7 @@ var bullet_timer = true
 # default direction that bullets are facing, only before the player ever moves
 var direction = Vector2.DOWN
 var test_direction = Vector2.ZERO # test if the direction is not zero first before changing the direction
-
+var can_dash = true
 var velocity = Vector2.ZERO
 var input_vector
 var MOVEMENT_SPEED = 100
@@ -56,10 +56,19 @@ func _physics_process(delta):
 	input_vector.y = Input.get_action_strength(controls["down"]) - Input.get_action_strength(controls["up"])
 	
 	input_vector.normalized()
+	
+	if Input.is_action_just_pressed("ui_dash") and can_dash:
+		input_vector.x *= 20
+		input_vector.y *= 20
+		can_dash = false
+		$DashCooldown.start()
+	
 	velocity.x = lerp(velocity.x, input_vector.x * MOVEMENT_SPEED, FRICTION)
 	velocity.y = lerp(velocity.y, input_vector.y * MOVEMENT_SPEED, FRICTION)
 	velocity = move_and_slide(velocity)
 	
+
+		
 	if abs(velocity.x) < 1:
 		_animated_sprite.play("idle_left")
 	if input_vector.x > 0:
@@ -131,3 +140,6 @@ func _on_HurtBox_area_entered(area):
 	print(health)
 	if health <= 0:
 		die()
+func _on_DashCooldown_timeout():
+	can_dash = true
+	
