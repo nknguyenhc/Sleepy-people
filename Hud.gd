@@ -33,7 +33,7 @@ func update_lives(player, hud_node: VBoxContainer):
 			lives_container.remove_child(c)
 	
 	# clone the template as often as necessary
-	for i in range(0, lives):
+	for _i in range(0, lives):
 		var new_node = lives_template.duplicate()
 		new_node.visible = true
 		lives_container.add_child(new_node)
