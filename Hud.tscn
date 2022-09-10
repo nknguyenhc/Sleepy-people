@@ -53,25 +53,25 @@ texture_under = ExtResource( 1 )
 texture_progress = ExtResource( 2 )
 tint_progress = Color( 1, 0.537255, 0, 1 )
 
-[node name="Stocks" type="HBoxContainer" parent="Topbar/A"]
+[node name="Lives" type="HBoxContainer" parent="Topbar/A"]
 margin_top = 52.0
 margin_right = 284.0
 margin_bottom = 84.0
 
-[node name="Stock" type="TextureRect" parent="Topbar/A/Stocks"]
+[node name="Life" type="TextureRect" parent="Topbar/A/Lives"]
 margin_right = 32.0
 margin_bottom = 32.0
 rect_pivot_offset = Vector2( -100, -47 )
 texture = SubResource( 7 )
 
-[node name="TextureRect2" type="TextureRect" parent="Topbar/A/Stocks"]
+[node name="Life2" type="TextureRect" parent="Topbar/A/Lives"]
 margin_left = 36.0
 margin_right = 68.0
 margin_bottom = 32.0
 rect_pivot_offset = Vector2( -100, -47 )
 texture = SubResource( 7 )
 
-[node name="TextureRect3" type="TextureRect" parent="Topbar/A/Stocks"]
+[node name="Life3" type="TextureRect" parent="Topbar/A/Lives"]
 margin_left = 72.0
 margin_right = 104.0
 margin_bottom = 32.0
@@ -110,27 +110,27 @@ margin_bottom = 43.0
 custom_fonts/font = SubResource( 2 )
 text = "P2"
 
-[node name="Stocks" type="HBoxContainer" parent="Topbar/B"]
+[node name="Lives" type="HBoxContainer" parent="Topbar/B"]
 margin_top = 52.0
 margin_right = 284.0
 margin_bottom = 84.0
 alignment = 2
 
-[node name="Stock" type="TextureRect" parent="Topbar/B/Stocks"]
+[node name="Life" type="TextureRect" parent="Topbar/B/Lives"]
 margin_left = 180.0
 margin_right = 212.0
 margin_bottom = 32.0
 rect_pivot_offset = Vector2( -100, -47 )
 texture = SubResource( 7 )
 
-[node name="Stock2" type="TextureRect" parent="Topbar/B/Stocks"]
+[node name="Life2" type="TextureRect" parent="Topbar/B/Lives"]
 margin_left = 216.0
 margin_right = 248.0
 margin_bottom = 32.0
 rect_pivot_offset = Vector2( -100, -47 )
 texture = SubResource( 7 )
 
-[node name="Stock3" type="TextureRect" parent="Topbar/B/Stocks"]
+[node name="Life3" type="TextureRect" parent="Topbar/B/Lives"]
 margin_left = 252.0
 margin_right = 284.0
 margin_bottom = 32.0
