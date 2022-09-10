@@ -35,7 +35,6 @@ polygon = PoolVector2Array( -13, -12, 1, -12, 10, 0, 1, 11, -13, 11 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 2.01069, 2.01069 )
 frames = SubResource( 5 )
-frame = 1
 playing = true
 offset = Vector2( -1, -1 )
 
