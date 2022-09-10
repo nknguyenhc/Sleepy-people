@@ -8,13 +8,13 @@ var velocity = Vector2.ZERO
 var input_vector
 var MOVEMENT_SPEED = 100
 var FRICTION = 0.3
+var MAX_HEALTH = 100
+var spawn_position = Vector2(100,100)
 
 var health = 100
-var stocks = 3
+var lives = 3
 
 var current_gun = ""
-
-var character_state = "spawning"
 
 onready var _animated_sprite = $AnimatedSprite
 
@@ -26,7 +26,7 @@ func _ready():
 
 func _physics_process(delta):
 	
-	if health == 0:
+	if health == 0 or Input.is_action_just_pressed("ui_accept"):
 		die()
 	
 	input_vector = Vector2.ZERO
@@ -47,4 +47,14 @@ func _physics_process(delta):
 		_animated_sprite.flip_h = false
 		_animated_sprite.play("run_left")
 
-
+func die():
+	lives -= 1
+	health = MAX_HEALTH
+	
+	if lives == 0:
+		lose()
+	
+	position = spawn_position
+	
+func lose():
+	pass

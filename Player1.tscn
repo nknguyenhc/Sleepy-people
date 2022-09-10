@@ -99,5 +99,3 @@ shape = SubResource( 6 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 19 )
 animation = "spawn_left"
-
-[node name="Timer" type="Timer" parent="."]
