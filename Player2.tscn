@@ -121,4 +121,7 @@ shape = SubResource( 28 )
 frames = SubResource( 29 )
 animation = "death_left"
 
+[node name="Dashcooldown" type="Timer" parent="."]
+
 [connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="timeout" from="Dashcooldown" to="." method="_on_Dashcooldown_timeout"]
