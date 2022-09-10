@@ -10,7 +10,12 @@ extends Node2D
 func _ready():
 	pass # Replace with function body.
 
-func _process(delta): 
-	if Input.is_action_pressed("ui_accept"): 
-		var next_level = "res://main.tscn"
-		get_tree().change_scene(next_level)
+
+func start(): 
+	var next_level = "res://main.tscn"
+	get_tree().change_scene(next_level)
+
+func _input(event):
+	if event is InputEventKey:
+		if event.pressed:
+			start()

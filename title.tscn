@@ -64,14 +64,14 @@ script = ExtResource( 6 )
 position = Vector2( 120, 205 )
 scale = Vector2( 16, 16 )
 frames = SubResource( 5 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Player2" type="AnimatedSprite" parent="."]
 position = Vector2( 906, 204 )
 scale = Vector2( 16, 16 )
 frames = SubResource( 10 )
-frame = 3
+frame = 2
 playing = true
 
 [node name="Title1" type="Sprite" parent="."]
