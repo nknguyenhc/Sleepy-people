@@ -13,6 +13,9 @@ func _ready():
 		set_collision_mask_bit(2, true)
 	if player == 'player2':
 		set_collision_mask_bit(1, true)
+	
+	# change the orientation
+	rotation_degrees = Vector2.RIGHT.angle_to(direction)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -20,3 +23,7 @@ func _ready():
 
 func _physics_process(delta):
 	position += direction * VELOCITY
+
+
+func _on_Timer_timeout():
+	queue_free()
