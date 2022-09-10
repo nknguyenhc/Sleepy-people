@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/ui/progress_bar_bg.png" type="Texture" id=1]
 [ext_resource path="res://assets/ui/progress_bar.png" type="Texture" id=2]
 [ext_resource path="res://assets/ui/m3x6.ttf" type="DynamicFontData" id=3]
 [ext_resource path="res://PlayerSprite/fPlayer_ [dwarf].png" type="Texture" id=4]
 [ext_resource path="res://Hud.gd" type="Script" id=5]
+[ext_resource path="res://assets/ui/progress_bar_burn.png" type="Texture" id=6]
 
 [sub_resource type="DynamicFont" id=1]
 size = 48
@@ -51,6 +52,7 @@ margin_right = 284.0
 margin_bottom = 48.0
 value = 50.0
 texture_under = ExtResource( 1 )
+texture_over = ExtResource( 6 )
 texture_progress = ExtResource( 2 )
 tint_progress = Color( 1, 0.537255, 0, 1 )
 
@@ -89,9 +91,10 @@ margin_right = 256.0
 margin_bottom = 48.0
 value = 50.0
 texture_under = ExtResource( 1 )
+texture_over = ExtResource( 6 )
 texture_progress = ExtResource( 2 )
 fill_mode = 1
-tint_progress = Color( 0, 0.764706, 1, 1 )
+tint_progress = Color( 0, 0.705882, 0.921569, 1 )
 
 [node name="Label" type="Label" parent="Topbar/B/Health"]
 margin_left = 260.0
