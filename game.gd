@@ -20,7 +20,7 @@ func _process(delta):
 	if timer >= spawn_time: 
 		spawnSlime() 
 		
-	if !get_node("Slime") and !timer_reset: 
+	if get_parent().has_node("Slime") and !timer_reset: 
 		timer_reset = true 
 	# print(timer)
 

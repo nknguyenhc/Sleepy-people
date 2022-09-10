@@ -113,7 +113,6 @@ animations = [ {
 extents = Vector2( 6, 7.5 )
 
 [node name="Player1" type="KinematicBody2D"]
-collision_layer = 0
 script = ExtResource( 2 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -121,22 +120,22 @@ position = Vector2( 0, 4.5 )
 scale = Vector2( 0.600001, 1 )
 shape = SubResource( 6 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="Anim1" type="AnimatedSprite" parent="."]
 frames = SubResource( 19 )
-animation = "spawn_left"
-
-[node name="Timer" type="Timer" parent="."]
+animation = "death_left"
 
 [node name="SwordTimer" type="Timer" parent="."]
 wait_time = 1.5
 
+[node name="BulletTimer" type="Timer" parent="."]
+
 [node name="HurtBox" type="Area2D" parent="."]
-collision_layer = 2
-collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2( 0, 4.5 )
 shape = SubResource( 28 )
 
+[connection signal="animation_finished" from="Anim1" to="." method="_on_Anim1_animation_finished"]
 [connection signal="timeout" from="SwordTimer" to="." method="_on_SwordTimer_timeout"]
+[connection signal="timeout" from="BulletTimer" to="." method="_on_BulletTimer_timeout"]
 [connection signal="area_entered" from="HurtBox" to="." method="_on_HurtBox_area_entered"]
