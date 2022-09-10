@@ -1,6 +1,6 @@
 extends KinematicBody2D
 
-var health = 2
+var health = 3
 var direction = 1
 
 const GRAVITY = 10
@@ -12,6 +12,8 @@ var s = 0
 
 var dead = false
 var cannot_hit = false
+
+var item_scene = load("res://Items/Item.tscn")
 
 onready var _animated_sprite = $AnimatedSprite
 
@@ -26,6 +28,13 @@ func playWalkAnim():
 	cannot_hit = false
 
 func kill(): 
+	randomize()
+	var item = item_scene.instance() 
+	item.position.x = self.position.x
+	item.position.y = self.position.y
+	item.type = randi() % 4
+	get_parent().add_child(item)
+	
 	queue_free() 
 
 func _physics_process(delta):
