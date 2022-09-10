@@ -8,7 +8,8 @@ extends Control
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	get_node("Topbar/A/Meters/Lives/Life").visible = false
+	get_node("Topbar/B/Meters/Lives/Life").visible = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -18,13 +19,13 @@ func _process(_delta):
 	update_lives(get_parent().get_node("Player1"), get_node("Topbar/A"))
 	update_lives(get_parent().get_node("Player2"), get_node("Topbar/B"))
 
-func update_health(player, hud_node: VBoxContainer):
-	var healthbar_node: TextureProgress = hud_node.get_node("Health/Bar")
+func update_health(player, hud_node: HBoxContainer):
+	var healthbar_node: TextureProgress = hud_node.get_node("Meters/Health")
 	healthbar_node.value = player.health
 
-func update_lives(player, hud_node: VBoxContainer):
+func update_lives(player, hud_node: HBoxContainer):
 	var lives = player.lives
-	var lives_container: HBoxContainer = hud_node.get_node("Lives")
+	var lives_container: HBoxContainer = hud_node.get_node("Meters/Lives")
 	var lives_template: TextureRect = lives_container.get_node("Life")
 	
 	# delete all existing non-template nodes
