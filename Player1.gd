@@ -13,7 +13,7 @@ var Sword = preload("res://sword_attack.tscn")
 var bullet
 var sword
 var sword_timer = true
-
+var bullet_timer = true
 # default direction that bullets are facing, only before the player ever moves
 var direction = Vector2.DOWN
 var test_direction = Vector2.ZERO # test if the direction is not zero first before changing the direction
@@ -69,38 +69,13 @@ func _physics_process(delta):
 		_animated_sprite.flip_h = false
 		_animated_sprite.play("run_left")
 		
-	if health <= 0:
-		die()
-
-func melee_attack():
-	pass
-
-func shoot():
-	pass
-
-func die():
-	set_physics_process(false)
-	_animated_sprite.play("death_left")
-
-	
-func lose():
-	queue_free()
-
-	# change the direction of the player, this does nothing to the player but determines the direction of bullets
+			# change the direction of the player, this does nothing to the player but determines the direction of bullets
 	test_direction = input_vector.normalized()
 	if test_direction != Vector2.ZERO:
 		direction = test_direction
-
-func _on_Anim1_animation_finished():
-	if _animated_sprite.animation == "death_left":
-		lives -= 1
-		health = MAX_HEALTH
-		if lives == 0:
-			lose()
-		position = spawn_position
-		_animated_sprite.play("idle_left")
-		set_physics_process(true)
-	if Input.is_action_just_pressed("ui_ranged"):
+	if Input.is_action_just_pressed("ui_ranged")and bullet_timer:
+		get_node("BulletTimer").start()
+		bullet_timer = false
 		bullet = Bullet.instance()
 		bullet.direction = direction
 		bullet.player = "player1"
@@ -117,10 +92,42 @@ func _on_Anim1_animation_finished():
 		add_child(sword)
 
 
+func melee_attack():
+	pass
+
+func shoot():
+	pass
+
+func die():
+	set_physics_process(false)
+	_animated_sprite.play("death_left")
+
+	
+func lose():
+	queue_free()
+
+
+
+func _on_Anim1_animation_finished():
+	if _animated_sprite.animation == "death_left":
+		lives -= 1
+		health = MAX_HEALTH
+		if lives == 0:
+			lose()
+		position = spawn_position
+		_animated_sprite.play("idle_left")
+		set_physics_process(true)
+
+
+
 func _on_SwordTimer_timeout():
 	sword_timer = true
 
+func _on_BulletTimer_timeout():
+	bullet_timer = true
 
 func _on_HurtBox_area_entered(area):
 	health -= 10
 	print(health)
+	if health <= 0:
+		die()
