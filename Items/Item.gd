@@ -1,7 +1,7 @@
 extends Area2D
 
 var type 
-var player 
+var player = null
 
 var active = false 
 var timer = 0 
@@ -24,12 +24,14 @@ func _process(delta):
 			deactivate() 
 
 func _on_Item_body_entered(body):
-	if body.name == "Player1" or body.name == "Player2": 
+	if !player and body.name == "Player1" or body.name == "Player2": 
 		player = body
 		takeEffect() 
 
 func takeEffect(): 
 	active = true
+	
+	print(player)
 	
 	if type == 0: 
 		player.health += 10

@@ -41,6 +41,7 @@ onready var _animated_sprite = $Anim1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	spawn_position = self.position
 	pass # Replace with function body.
 	
 func _physics_process(delta):
@@ -114,19 +115,19 @@ func die():
 
 	
 func lose():
-	queue_free()
-
-
+	# queue_free()
+	_animated_sprite.play("lose")
 
 func _on_Anim1_animation_finished():
 	if _animated_sprite.animation == "death_left":
 		lives -= 1
-		health = MAX_HEALTH
 		if lives == 0:
 			lose()
-		position = spawn_position
-		_animated_sprite.play("idle_left")
-		set_physics_process(true)
+		else: 
+			health = MAX_HEALTH
+			position = spawn_position
+			_animated_sprite.play("idle_left")
+			set_physics_process(true)
 
 
 
