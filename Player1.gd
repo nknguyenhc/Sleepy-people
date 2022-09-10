@@ -21,15 +21,13 @@ var controls = {"up": "ui_up",
 				"melee": "ui_melee",
 				"bullet": "ui_bullet"}
 
-onready var _animated_sprite = $AnimatedSprite
+onready var _animated_sprite = $Anim1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
 	
 func _physics_process(delta):
-	print(health)
-	health -= 1
 
 	if Input.is_action_just_pressed(controls["melee"]):
 		melee_attack()
@@ -74,8 +72,7 @@ func lose():
 	queue_free()
 
 
-
-func _on_AnimatedSprite_animation_finished():
+func _on_Anim1_animation_finished():
 	if _animated_sprite.animation == "death_left":
 		lives -= 1
 		health = MAX_HEALTH
@@ -84,4 +81,3 @@ func _on_AnimatedSprite_animation_finished():
 		position = spawn_position
 		_animated_sprite.play("idle_left")
 		set_physics_process(true)
-

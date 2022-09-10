@@ -28,8 +28,6 @@ func _ready():
 	pass # Replace with function body.
 	
 func _physics_process(delta):
-	print(health)
-	health -= 1
 
 	if Input.is_action_just_pressed(controls["melee"]):
 		melee_attack()

@@ -117,8 +117,8 @@ position = Vector2( 0, 4.5 )
 scale = Vector2( 0.600001, 1 )
 shape = SubResource( 6 )
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+[node name="Anim1" type="AnimatedSprite" parent="."]
 frames = SubResource( 19 )
 animation = "death_left"
 
-[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]
+[connection signal="animation_finished" from="Anim1" to="." method="_on_Anim1_animation_finished"]
