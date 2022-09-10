@@ -15,7 +15,7 @@ func _ready():
 		set_collision_mask_bit(1, true)
 	
 	# change the orientation
-	rotation_degrees = Vector2.RIGHT.angle_to(direction)
+	rotation_degrees = rad2deg(Vector2.RIGHT.angle_to(direction))
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
