@@ -27,7 +27,7 @@ func _process(delta):
 func spawnSlime(): 
 	randomize()
 	var slime = slime_scene.instance() 
-	slime.position.x = rand_range(320, 728)
+	slime.position.x = rand_range(320, 688)
 	if k == 0: 
 		slime.position.y = rand_range(388, 428) 
 		k = 1
