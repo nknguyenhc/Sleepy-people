@@ -1,14 +1,15 @@
 extends KinematicBody2D
 
-
-
 var MAX_HEALTH = 100
 var velocity = Vector2.ZERO
 var input_vector
 var MOVEMENT_SPEED = 100
 var FRICTION = 0.3
 var spawn_position = Vector2(100,100)
+var dash_distance = 20
+var dash_cooldown = 1
 
+var can_dash = true
 var health = 100
 var lives = 3
 
@@ -19,13 +20,15 @@ var controls = {"up": "ui_up",
 				"left": "ui_left",
 				"right": "ui_right",
 				"melee": "ui_melee",
-				"bullet": "ui_bullet"}
+				"bullet": "ui_bullet",
+				"dash": "ui_dash"}
 
 onready var _animated_sprite = $Anim1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	$Dashcooldown.wait_time = dash_cooldown
+	
 	
 func _physics_process(delta):
 
@@ -39,6 +42,13 @@ func _physics_process(delta):
 	input_vector = Vector2.ZERO
 	input_vector.x = Input.get_action_strength(controls["right"]) - Input.get_action_strength(controls["left"])
 	input_vector.y = Input.get_action_strength(controls["down"]) - Input.get_action_strength(controls["up"])
+	
+	if Input.is_action_just_pressed(controls["dash"]) and can_dash:
+		input_vector.x *= dash_distance
+		input_vector.y *= dash_distance
+		can_dash = false
+		$Dashcooldown.start()
+		
 	
 	input_vector.normalized()
 	velocity.x = lerp(velocity.x, input_vector.x * MOVEMENT_SPEED, FRICTION)
@@ -81,3 +91,6 @@ func _on_Anim1_animation_finished():
 		position = spawn_position
 		_animated_sprite.play("idle_left")
 		set_physics_process(true)
+
+func _on_Dashcooldown_timeout():
+	can_dash = true
