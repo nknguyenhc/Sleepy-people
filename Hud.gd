@@ -16,12 +16,18 @@ func _ready():
 func _process(_delta):
 	update_health(get_parent().get_node("Player1"), get_node("Topbar/A"))
 	update_health(get_parent().get_node("Player2"), get_node("Topbar/B"))
+	# update_dash(get_parent().get_node("Player1"), get_node("Topbar/A"))
+	# update_dash(get_parent().get_node("Player2"), get_node("Topbar/B"))
 	update_lives(get_parent().get_node("Player1"), get_node("Topbar/A"))
 	update_lives(get_parent().get_node("Player2"), get_node("Topbar/B"))
 
 func update_health(player, hud_node: HBoxContainer):
 	var healthbar_node: TextureProgress = hud_node.get_node("Meters/Health")
 	healthbar_node.value = player.health
+
+func update_dash(player, hud_node: HBoxContainer):
+	var dashbar: TextureProgress = hud_node.get_node("Meters/Dash")
+	dashbar.value = player.dash
 
 func update_lives(player, hud_node: HBoxContainer):
 	var lives = player.lives
