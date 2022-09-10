@@ -1,6 +1,21 @@
 extends KinematicBody2D
 
 
+# Declare member variables here. Examples:
+# var a = 2
+# var b = "text"
+
+# for bullets
+var Bullet = preload("res://Bullet.tscn")
+var Sword = preload("res://sword_attack.tscn")
+var bullet
+var sword
+var sword_timer = true
+
+# default direction that bullets are facing, only before the player ever moves
+var direction = Vector2.DOWN
+var test_direction = Vector2.ZERO # test if the direction is not zero first before changing the direction
+
 
 var MAX_HEALTH = 100
 var velocity = Vector2.ZERO
@@ -21,13 +36,18 @@ var controls = {"up": "ui_up",
 				"melee": "ui_melee",
 				"bullet": "ui_bullet"}
 
-onready var _animated_sprite = $Anim1
+var character_state = "spawning"
+
+onready var _animated_sprite = $AnimatedSprite
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	_animated_sprite.play("spawn_left")
 	pass # Replace with function body.
 	
 func _physics_process(delta):
+	print(health)
+	health -= 1
 
 	if Input.is_action_just_pressed(controls["melee"]):
 		melee_attack()
@@ -53,6 +73,36 @@ func _physics_process(delta):
 	if input_vector.x < 0:
 		_animated_sprite.flip_h = false
 		_animated_sprite.play("run_left")
+
+	# change the direction of the player, this does nothing to the player but determines the direction of bullets
+	test_direction = input_vector.normalized()
+	if test_direction != Vector2.ZERO:
+		direction = test_direction
+
+	if Input.is_action_just_pressed("ui_ranged"):
+		bullet = Bullet.instance()
+		bullet.direction = direction
+		bullet.player = "player1"
+		bullet.position = position
+		get_parent().add_child(bullet)
+	
+	if Input.is_action_just_pressed("ui_sword") and sword_timer:
+		get_node("SwordTimer").start()
+		sword_timer = false
+		sword = Sword.instance()
+		sword.direction = direction
+		sword.player = "player1"
+		sword.position = Vector2.DOWN * 5 # supposed to at the origin, but the player is offset
+		add_child(sword)
+
+
+func _on_SwordTimer_timeout():
+	sword_timer = true
+
+
+func _on_HurtBox_area_entered(area):
+	health -= 10
+	print(health)
 		
 	if health <= 0:
 		die()
@@ -72,7 +122,8 @@ func lose():
 	queue_free()
 
 
-func _on_Anim1_animation_finished():
+
+func _on_AnimatedSprite_animation_finished():
 	if _animated_sprite.animation == "death_left":
 		lives -= 1
 		health = MAX_HEALTH
@@ -81,3 +132,4 @@ func _on_Anim1_animation_finished():
 		position = spawn_position
 		_animated_sprite.play("idle_left")
 		set_physics_process(true)
+
