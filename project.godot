@@ -14,10 +14,6 @@ config/name="Sleepy-people"
 run/main_scene="res://main.tscn"
 config/icon="res://icon.png"
 
-[global]
-
-physics=false
-
 [gui]
 
 common/drop_mouse_on_gui_input_disabled=true
@@ -49,11 +45,6 @@ ui_right_2={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":68,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
-ui_melee={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":16777237,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
- ]
-}
 ui_bullet_2={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":81,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
@@ -69,32 +60,6 @@ ui_melee_2={
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
-ui_ranged={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777237,"unicode":0,"echo":false,"script":null)
- ]
-}
-ui_sword={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":16777221,"unicode":0,"echo":false,"script":null)
- ]
-}
-ui_ranged_2={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":69,"unicode":0,"echo":false,"script":null)
- ]
-}
-ui_sword_2={
-"deadzone": 0.5,
-"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":0,"physical_scancode":81,"unicode":0,"echo":false,"script":null)
- ]
-}
-
-[layer_names]
-
-2d_physics/layer_1="map (layer), players (mask)"
-2d_physics/layer_2="player1 (layer), bullet2 (mask)"
-2d_physics/layer_3="player2 (layer), bullet1 (mask)"
 
 [physics]
 
