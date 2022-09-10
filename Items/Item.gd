@@ -20,6 +20,7 @@ func _ready():
 func _process(delta):
 	if active: 
 		timer += delta * 50
+		print(player.MOVEMENT_SPEED)
 		if timer >= duration: 
 			deactivate() 
 

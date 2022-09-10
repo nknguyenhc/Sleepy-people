@@ -24,6 +24,10 @@ func _process(delta):
 		timer_reset = true 
 	# print(timer)
 
+	if Input.is_action_pressed("ui_cancel"): 
+		var next_level = "res://title.tscn"
+		get_tree().change_scene(next_level)
+
 func spawnSlime(): 
 	randomize()
 	var slime = slime_scene.instance() 
@@ -38,3 +42,5 @@ func spawnSlime():
 	timer = 0 
 	timer_reset = false
 	add_child(slime)
+
+
