@@ -138,10 +138,10 @@ func _on_BulletTimer_timeout():
 
 func _on_HurtBox_area_entered(area):
 	if area.is_in_group("sword"):
-		health-=30
+		health-=Playerpowers.p2atk * 3
 	else:
-		health -= 10
-	health -= power
+		health -= Playerpowers.p2atk
+
 	print(health)
 	if health <= 0:
 		die()

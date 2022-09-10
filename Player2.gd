@@ -139,11 +139,10 @@ func _on_SwordTimer_timeout():
 
 func _on_HurtBox_area_entered(area):
 	if area.is_in_group("sword"):
-		health-=30
+		health-=Playerpowers.p1atk * 3
 	else:
-		health -= 10
-	health -= power
-	print(health)		
+		health -= Playerpowers.p1atk
+	print(health)
 	if health <= 0:
 		die()
 func _on_DashCooldown_timeout():
