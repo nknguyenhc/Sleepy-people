@@ -8,14 +8,7 @@ var direction
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if direction == Vector2.UP:
-		rotation_degrees = -90
-	if direction == Vector2.DOWN:
-		rotation_degrees = -90
-		scale.y = -1
-	if direction == Vector2.RIGHT:
-		pass
-	if direction == Vector2.LEFT:
+	if direction.x < 0:
 		scale.x = -1
 	
 	if player == 'player1':

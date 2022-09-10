@@ -4,6 +4,18 @@ extends KinematicBody2D
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
+
+# for bullets
+var Bullet = preload("res://Bullet.tscn")
+var Sword = preload("res://sword_attack.tscn")
+var bullet
+var sword
+var sword_timer = true
+
+# default direction that bullets are facing, only before the player ever moves
+var direction = Vector2.DOWN
+var test_direction = Vector2.ZERO # test if the direction is not zero first before changing the direction
+
 var velocity = Vector2.ZERO
 var input_vector
 var MOVEMENT_SPEED = 100
@@ -47,4 +59,32 @@ func _physics_process(delta):
 		_animated_sprite.flip_h = false
 		_animated_sprite.play("run_left")
 
+	# change the direction of the player, this does nothing to the player but determines the direction of bullets
+	test_direction = input_vector.normalized()
+	if test_direction != Vector2.ZERO:
+		direction = test_direction
 
+	if Input.is_action_just_pressed("ui_ranged"):
+		bullet = Bullet.instance()
+		bullet.direction = direction
+		bullet.player = "player1"
+		bullet.position = position
+		get_parent().add_child(bullet)
+	
+	if Input.is_action_just_pressed("ui_sword") and sword_timer:
+		get_node("SwordTimer").start()
+		sword_timer = false
+		sword = Sword.instance()
+		sword.direction = direction
+		sword.player = "player1"
+		sword.position = Vector2.DOWN * 5 # supposed to at the origin, but the player is offset
+		add_child(sword)
+
+
+func _on_SwordTimer_timeout():
+	sword_timer = true
+
+
+func _on_HurtBox_area_entered(area):
+	health -= 10
+	print(health)
