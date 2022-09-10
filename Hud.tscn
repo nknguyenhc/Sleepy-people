@@ -76,9 +76,9 @@ texture_over = ExtResource( 9 )
 texture_progress = ExtResource( 8 )
 tint_progress = Color( 0.733333, 0, 1, 1 )
 nine_patch_stretch = true
-stretch_margin_left = 4
+stretch_margin_left = 16
 stretch_margin_top = 4
-stretch_margin_right = 4
+stretch_margin_right = 16
 stretch_margin_bottom = 4
 
 [node name="Lives" type="HBoxContainer" parent="Topbar/A/Meters"]
@@ -138,9 +138,9 @@ texture_progress = ExtResource( 8 )
 fill_mode = 1
 tint_progress = Color( 0.733333, 0, 1, 1 )
 nine_patch_stretch = true
-stretch_margin_left = 4
+stretch_margin_left = 16
 stretch_margin_top = 4
-stretch_margin_right = 4
+stretch_margin_right = 16
 stretch_margin_bottom = 4
 
 [node name="Lives" type="HBoxContainer" parent="Topbar/B/Meters"]
