@@ -3,7 +3,7 @@ extends Node
 var slime_scene = load("res://Items/Slime.tscn")
 
 var timer = 0
-var spawn_time = 200
+var spawn_time = 250
 var timer_reset = false
 var k
 
@@ -20,14 +20,14 @@ func _process(delta):
 	if timer >= spawn_time: 
 		spawnSlime() 
 		
-	if get_parent().has_node("Slime") and !timer_reset: 
+	if !has_node("Slime") and !timer_reset: 
 		timer_reset = true 
 	# print(timer)
 
 func spawnSlime(): 
 	randomize()
 	var slime = slime_scene.instance() 
-	slime.position.x = rand_range(320, 728)
+	slime.position.x = rand_range(320, 688)
 	if k == 0: 
 		slime.position.y = rand_range(388, 428) 
 		k = 1

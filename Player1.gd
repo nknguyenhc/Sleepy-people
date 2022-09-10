@@ -17,15 +17,16 @@ var bullet_timer = true
 # default direction that bullets are facing, only before the player ever moves
 var direction = Vector2.DOWN
 var test_direction = Vector2.ZERO # test if the direction is not zero first before changing the direction
-
+var can_dash = true
 var velocity = Vector2.ZERO
 var input_vector
-var MOVEMENT_SPEED = 100
+var MOVEMENT_SPEED = 150
 var FRICTION = 0.3
 var spawn_position = Vector2(100,100)
 
 var health = 100
 var lives = 3
+var power = 10
 
 var current_gun = ""
 
@@ -40,6 +41,7 @@ onready var _animated_sprite = $Anim1
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	spawn_position = self.position
 	pass # Replace with function body.
 	
 func _physics_process(delta):
@@ -56,10 +58,19 @@ func _physics_process(delta):
 	input_vector.y = Input.get_action_strength(controls["down"]) - Input.get_action_strength(controls["up"])
 	
 	input_vector.normalized()
+	
+	if Input.is_action_just_pressed("ui_dash") and can_dash:
+		input_vector.x *= 20
+		input_vector.y *= 20
+		can_dash = false
+		$DashCooldown.start()
+	
 	velocity.x = lerp(velocity.x, input_vector.x * MOVEMENT_SPEED, FRICTION)
 	velocity.y = lerp(velocity.y, input_vector.y * MOVEMENT_SPEED, FRICTION)
 	velocity = move_and_slide(velocity)
 	
+
+		
 	if abs(velocity.x) < 1:
 		_animated_sprite.play("idle_left")
 	if input_vector.x > 0:
@@ -104,19 +115,19 @@ func die():
 
 	
 func lose():
-	queue_free()
-
-
+	# queue_free()
+	_animated_sprite.play("lose")
 
 func _on_Anim1_animation_finished():
 	if _animated_sprite.animation == "death_left":
 		lives -= 1
-		health = MAX_HEALTH
 		if lives == 0:
 			lose()
-		position = spawn_position
-		_animated_sprite.play("idle_left")
-		set_physics_process(true)
+		else: 
+			health = MAX_HEALTH
+			position = spawn_position
+			_animated_sprite.play("idle_left")
+			set_physics_process(true)
 
 
 
@@ -127,7 +138,14 @@ func _on_BulletTimer_timeout():
 	bullet_timer = true
 
 func _on_HurtBox_area_entered(area):
-	health -= 10
+	if area.is_in_group("sword"):
+		health-=Playerpowers.p2atk * 3
+	else:
+		health -= Playerpowers.p2atk
+
 	print(health)
 	if health <= 0:
 		die()
+func _on_DashCooldown_timeout():
+	can_dash = true
+	

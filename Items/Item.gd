@@ -1,12 +1,12 @@
 extends Area2D
 
 var type 
-var player 
+var player = null
 
 var active = false 
 var timer = 0 
-var duration = 150
-
+var duration = 200
+var playerno = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	print(type)
@@ -24,20 +24,30 @@ func _process(delta):
 			deactivate() 
 
 func _on_Item_body_entered(body):
-	if body.name == "Player1" or body.name == "Player2": 
+	if !player and body.name == "Player1" or body.name == "Player2": 
 		player = body
+		if body.name == "Player1":
+			playerno = 1
+		else:
+			playerno = 2
 		takeEffect() 
+
 
 func takeEffect(): 
 	active = true
+	
+	print(player)
 	
 	if type == 0: 
 		player.health += 10
 		queue_free() 
 	elif type == 1: 
-		player.health += 0 # EDIT: add power
+		if playerno == 1:
+			Playerpowers.p1atk += 10
+		else:
+			Playerpowers.p2atk += 10
 	elif type == 2: 
-		player.MOVEMENT_SPEED += 100
+		player.MOVEMENT_SPEED += 150
 		
 	position.x = 0
 	position.y = 0
@@ -45,9 +55,13 @@ func takeEffect():
 
 func deactivate(): 
 	if type == 1: 
-		player.health -= 0 # EDIT: reduce power
+		if playerno == 1:
+			Playerpowers.p1atk -= 10
+		else:
+			Playerpowers.p2atk -= 10
+		player.power -= 10 # EDIT: reduce power
 	elif type == 2: 
-		player.MOVEMENT_SPEED -= 100
+		player.MOVEMENT_SPEED -= 150
 
 	active = false
 	queue_free() 

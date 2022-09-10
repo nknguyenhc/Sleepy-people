@@ -65,3 +65,7 @@ func _physics_process(delta):
 			_animated_sprite.connect("animation_finished", self, "kill")
 			_animated_sprite.play("die")
 
+func _on_Area2D_area_entered(area):
+	_animated_sprite.play("hit") 
+	health -= 1 
+	cannot_hit = true

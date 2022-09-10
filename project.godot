@@ -10,9 +10,18 @@ config_version=4
 
 [application]
 
-config/name="Sleepy-people"
+config/name="Island Showdown"
 run/main_scene="res://title.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Playerpowers="*res://playerpowers.gd"
+
+[display]
+
+window/stretch/mode="viewport"
+window/stretch/aspect="keep"
 
 [global]
 

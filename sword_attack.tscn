@@ -23,7 +23,7 @@ animations = [ {
 "speed": 3.0
 } ]
 
-[node name="Area2D" type="Area2D"]
+[node name="Area2D" type="Area2D" groups=["sword"]]
 scale = Vector2( 0.7, 0.7 )
 collision_layer = 0
 script = ExtResource( 1 )
@@ -35,7 +35,7 @@ polygon = PoolVector2Array( -13, -12, 1, -12, 10, 0, 1, 11, -13, 11 )
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 scale = Vector2( 2.01069, 2.01069 )
 frames = SubResource( 5 )
-frame = 1
+frame = 2
 playing = true
 offset = Vector2( -1, -1 )
 
