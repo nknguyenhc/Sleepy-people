@@ -24,13 +24,16 @@ func update_health(player, hud_node: VBoxContainer):
 
 func update_lives(player, hud_node: VBoxContainer):
 	var lives = player.lives
-	var lives_node: HBoxContainer = hud_node.get_node("Lives")
-	var lives_instance: TextureRect = lives_node.get_node("Life")
+	var lives_container: HBoxContainer = hud_node.get_node("Lives")
+	var lives_template: TextureRect = lives_container.get_node("Life")
 	
-	# delete all existing nodes
-	for c in lives_node.get_children():
-		lives_node.remove_child(c)
+	# delete all existing non-template nodes
+	for c in lives_container.get_children():
+		if c != lives_template:
+			lives_container.remove_child(c)
 	
-	# and add 'em back
+	# clone the template as often as necessary
 	for i in range(0, lives):
-		lives_node.add_child(lives_instance.duplicate())
+		var new_node = lives_template.duplicate()
+		new_node.visible = true
+		lives_container.add_child(new_node)
