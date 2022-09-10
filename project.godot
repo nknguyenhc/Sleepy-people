@@ -14,10 +14,6 @@ config/name="Sleepy-people"
 run/main_scene="res://title.tscn"
 config/icon="res://icon.png"
 
-[autoload]
-
-Playerpowers="*res://playerpowers.gd"
-
 [global]
 
 physics=false
