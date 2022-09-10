@@ -3,7 +3,7 @@ extends Node
 var slime_scene = load("res://Items/Slime.tscn")
 
 var timer = 0
-var spawn_time = 200
+var spawn_time = 250
 var timer_reset = false
 var k
 
