@@ -21,12 +21,13 @@ var test_direction = Vector2.ZERO # test if the direction is not zero first befo
 var can_dash = true
 var velocity = Vector2.ZERO
 var input_vector
-var MOVEMENT_SPEED = 100
+var MOVEMENT_SPEED = 150
 var FRICTION = 0.3
 var spawn_position = Vector2(100,100)
 
 var health = 100
 var lives = 3
+var power = 10
 
 var current_gun = ""
 
@@ -137,7 +138,7 @@ func _on_SwordTimer_timeout():
 
 
 func _on_HurtBox_area_entered(area):
-	health -= 10
+	health -= power
 	print(health)		
 	if health <= 0:
 		die()
