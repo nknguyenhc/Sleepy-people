@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://assets/ui/progress_bar_bg.png" type="Texture" id=1]
+[ext_resource path="res://assets/ui/progress_bar.png" type="Texture" id=2]
+[ext_resource path="res://contrib/Game Over/Game_Over_2.tres" type="BitmapFont" id=3]
+
+[node name="Control" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="hbTopbar" type="HBoxContainer" parent="."]
+margin_right = 1024.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+
+[node name="hbA" type="HBoxContainer" parent="hbTopbar"]
+margin_right = 280.0
+margin_bottom = 48.0
+
+[node name="lbAHealth" type="Label" parent="hbTopbar/hbA"]
+margin_top = 23.0
+margin_right = 20.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 3 )
+text = "P1"
+
+[node name="tpAHealth" type="TextureProgress" parent="hbTopbar/hbA"]
+margin_left = 24.0
+margin_right = 280.0
+margin_bottom = 48.0
+value = 50.0
+texture_under = ExtResource( 1 )
+texture_progress = ExtResource( 2 )
+
+[node name="SpaceFill" type="Control" parent="hbTopbar"]
+margin_left = 284.0
+margin_right = 740.0
+margin_bottom = 48.0
+size_flags_horizontal = 3
+
+[node name="hbB" type="HBoxContainer" parent="hbTopbar"]
+margin_left = 744.0
+margin_right = 1024.0
+margin_bottom = 48.0
+
+[node name="tpBHealth" type="TextureProgress" parent="hbTopbar/hbB"]
+margin_right = 256.0
+margin_bottom = 48.0
+value = 50.0
+texture_under = ExtResource( 1 )
+texture_progress = ExtResource( 2 )
+fill_mode = 1
+tint_progress = Color( 1, 0.117647, 0, 1 )
+
+[node name="lbBHealth" type="Label" parent="hbTopbar/hbB"]
+margin_left = 260.0
+margin_top = 23.0
+margin_right = 280.0
+margin_bottom = 24.0
+custom_fonts/font = ExtResource( 3 )
+text = "P2"
+
+[node name="HFlowContainer" type="HFlowContainer" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
