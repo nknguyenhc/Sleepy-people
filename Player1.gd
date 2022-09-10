@@ -16,15 +16,25 @@ var sword_timer = true
 var direction = Vector2.DOWN
 var test_direction = Vector2.ZERO # test if the direction is not zero first before changing the direction
 
+
+var MAX_HEALTH = 100
 var velocity = Vector2.ZERO
 var input_vector
 var MOVEMENT_SPEED = 100
 var FRICTION = 0.3
+var spawn_position = Vector2(100,100)
 
 var health = 100
-var stocks = 3
+var lives = 3
 
 var current_gun = ""
+
+var controls = {"up": "ui_up", 
+				"down": "ui_down",
+				"left": "ui_left",
+				"right": "ui_right",
+				"melee": "ui_melee",
+				"bullet": "ui_bullet"}
 
 var character_state = "spawning"
 
@@ -34,16 +44,21 @@ onready var _animated_sprite = $AnimatedSprite
 func _ready():
 	_animated_sprite.play("spawn_left")
 	pass # Replace with function body.
-
-
+	
 func _physics_process(delta):
+	print(health)
+	health -= 1
+
+	if Input.is_action_just_pressed(controls["melee"]):
+		melee_attack()
 	
-	# if health == 0:
-		# die()
-	
+	if Input.is_action_just_pressed(controls["bullet"]):
+		shoot()
+		
+	## Movement
 	input_vector = Vector2.ZERO
-	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+	input_vector.x = Input.get_action_strength(controls["right"]) - Input.get_action_strength(controls["left"])
+	input_vector.y = Input.get_action_strength(controls["down"]) - Input.get_action_strength(controls["up"])
 	
 	input_vector.normalized()
 	velocity.x = lerp(velocity.x, input_vector.x * MOVEMENT_SPEED, FRICTION)
@@ -88,3 +103,33 @@ func _on_SwordTimer_timeout():
 func _on_HurtBox_area_entered(area):
 	health -= 10
 	print(health)
+		
+	if health <= 0:
+		die()
+
+func melee_attack():
+	pass
+
+func shoot():
+	pass
+
+func die():
+	set_physics_process(false)
+	_animated_sprite.play("death_left")
+
+	
+func lose():
+	queue_free()
+
+
+
+func _on_AnimatedSprite_animation_finished():
+	if _animated_sprite.animation == "death_left":
+		lives -= 1
+		health = MAX_HEALTH
+		if lives == 0:
+			lose()
+		position = spawn_position
+		_animated_sprite.play("idle_left")
+		set_physics_process(true)
+
