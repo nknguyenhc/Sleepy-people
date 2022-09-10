@@ -30,8 +30,8 @@ func _physics_process(delta):
 		# die()
 	
 	input_vector = Vector2.ZERO
-	input_vector.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
-	input_vector.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+	input_vector.x = Input.get_action_strength("ui_right_2") - Input.get_action_strength("ui_left_2")
+	input_vector.y = Input.get_action_strength("ui_down_2") - Input.get_action_strength("ui_up_2")
 	
 	input_vector.normalized()
 	velocity.x = lerp(velocity.x, input_vector.x * MOVEMENT_SPEED, FRICTION)
