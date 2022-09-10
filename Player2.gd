@@ -137,7 +137,10 @@ func _on_SwordTimer_timeout():
 
 
 func _on_HurtBox_area_entered(area):
-	health -= 10
+	if area.is_in_group("sword"):
+		health-=30
+	else:
+		health -= 10
 	print(health)		
 	if health <= 0:
 		die()
