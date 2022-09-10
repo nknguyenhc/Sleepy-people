@@ -31,6 +31,7 @@ margin_bottom = 48.0
 value = 50.0
 texture_under = ExtResource( 1 )
 texture_progress = ExtResource( 2 )
+tint_progress = Color( 1, 0.537255, 0, 1 )
 
 [node name="SpaceFill" type="Control" parent="hbTopbar"]
 margin_left = 284.0
@@ -50,7 +51,7 @@ value = 50.0
 texture_under = ExtResource( 1 )
 texture_progress = ExtResource( 2 )
 fill_mode = 1
-tint_progress = Color( 1, 0.117647, 0, 1 )
+tint_progress = Color( 0, 1, 0.717647, 1 )
 
 [node name="lbBHealth" type="Label" parent="hbTopbar/hbB"]
 margin_left = 260.0
