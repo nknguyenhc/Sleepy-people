@@ -13,5 +13,5 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	get_node("hbTopbar/hbA/tpAHealth").value = get_parent().get_node("Player1").health;
-	get_node("hbTopbar/hbB/tpBHealth").value = get_parent().get_node("Player2").health;
+	get_node("Topbar/A/Health/Bar").value = get_parent().get_node("Player1").health;
+	get_node("Topbar/B/Health/Bar").value = get_parent().get_node("Player2").health;
