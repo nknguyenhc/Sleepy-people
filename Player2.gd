@@ -120,7 +120,7 @@ func lose():
 func _on_AnimatedSprite_animation_finished():
 	if _animated_sprite.animation == "death_left":
 		lives -= 1
-		if lives == 0:
+		if lives <= 0:
 			lose()
 		else: 
 			health = MAX_HEALTH
