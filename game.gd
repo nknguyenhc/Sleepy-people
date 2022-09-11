@@ -3,7 +3,7 @@ extends Node
 var slime_scene = load("res://Items/Slime.tscn")
 
 var timer = 0
-var spawn_time = 250
+var spawn_time = 300
 var timer_reset = false
 var k
 
@@ -11,6 +11,7 @@ var k
 func _ready():
 	randomize()
 	k =  randi() % 20
+	spawnSlime() 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):

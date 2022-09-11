@@ -34,7 +34,7 @@ func _on_Item_body_entered(body):
 func takeEffect(): 
 	active = true
 	if type == 0: 
-		player.health += 10
+		player.health += 20
 		queue_free() 
 	elif type == 1: 
 		if playerno == 1:
