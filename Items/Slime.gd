@@ -32,7 +32,7 @@ func kill():
 	var item = item_scene.instance() 
 	item.position.x = self.position.x
 	item.position.y = self.position.y
-	item.type = randi() % 4
+	item.type = randi() % 3
 	get_parent().add_child(item)
 	
 	queue_free() 

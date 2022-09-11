@@ -33,7 +33,7 @@ func spawnSlime():
 	var slime = slime_scene.instance() 
 	slime.position.x = rand_range(320, 688)
 	if k == 0: 
-		slime.position.y = rand_range(388, 428) 
+		slime.position.y = rand_range(388, 418) 
 		k = 1
 	else: 
 		slime.position.y = rand_range(178, 208) 

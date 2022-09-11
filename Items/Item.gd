@@ -9,7 +9,6 @@ var duration = 200
 var playerno = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	print(type)
 	if type == 0: 
 		$AnimatedSprite.play("health") 
 	elif type == 1: 
@@ -20,7 +19,6 @@ func _ready():
 func _process(delta):
 	if active: 
 		timer += delta * 50
-		print(player.MOVEMENT_SPEED)
 		if timer >= duration: 
 			deactivate() 
 
@@ -33,12 +31,8 @@ func _on_Item_body_entered(body):
 			playerno = 2
 		takeEffect() 
 
-
 func takeEffect(): 
 	active = true
-	
-	print(player)
-	
 	if type == 0: 
 		player.health += 10
 		queue_free() 
